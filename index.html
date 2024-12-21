@@ -5,35 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ÆLĪĀŠ</title>
     <style>
-        /* Fullscreen video background */
         body {
             margin: 0;
             color: white;
+            background-color: black; /* Schwarzer Hintergrund */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: "Courier New", Courier, monospace; /* Typewriter font for everything */
+            font-family: "Courier New", Courier, monospace;
             position: relative;
             overflow: hidden;
-        }
-
-        /* Video styling */
-        video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensure the video covers the entire viewport */
-            z-index: -1; /* Keep video in the background */
         }
 
         h1 {
             font-size: 5rem;
             letter-spacing: 1rem;
             cursor: pointer;
-            z-index: 2; /* Ensure the logo is clickable */
+            z-index: 2;
         }
 
         #menu-toggle {
@@ -41,10 +30,10 @@
             top: 20px;
             right: 20px;
             color: white;
-            font-family: Arial, sans-serif; /* Non-typewriter font for the menu button */
+            font-family: Arial, sans-serif;
             cursor: pointer;
             font-size: 1.5rem;
-            z-index: 2; /* Ensure the button is clickable */
+            z-index: 2;
         }
 
         .terminal {
@@ -56,10 +45,10 @@
             border: 2px solid white;
             padding: 20px;
             border-radius: 5px;
-            font-family: "Courier New", Courier, monospace; /* Typewriter font for terminal content */
+            font-family: "Courier New", Courier, monospace;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
             display: none;
-            z-index: 3; /* Ensure the terminal is in front */
+            z-index: 3;
         }
 
         .terminal .title-bar {
@@ -85,24 +74,10 @@
             letter-spacing: 1rem;
             position: relative;
             animation: glitch 2s infinite;
-            font-family: "Courier New", Courier, monospace; /* Typewriter font for terminal items */
         }
 
         .terminal ul li:hover {
             text-shadow: 0 0 5px white;
-        }
-
-        #close-terminal {
-            cursor: pointer;
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); opacity: 1; }
-            20% { transform: translate(-2px, 2px); opacity: 0.8; }
-            40% { transform: translate(2px, -2px); opacity: 1; }
-            60% { transform: translate(-1px, 1px); opacity: 0.9; }
-            80% { transform: translate(1px, -1px); opacity: 1; }
-            100% { transform: translate(0); opacity: 1; }
         }
 
         #about, #projects, #contact {
@@ -129,97 +104,84 @@
     </style>
 </head>
 <body>
-    <!-- Video background -->
-    <video autoplay muted loop>
-        <source src="video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <h1 onclick="navigateToHome()">ÆLĪĀŠ</h1>
-    <div id="menu-toggle">[ Menu ]</div>
-    <div class="terminal" id="terminal">
-        <div class="title-bar">
-            <span>Navigation</span>
-            <span id="close-terminal">[ X ]</span>
-        </div>
-        <ul>
-            <li data-text="About" onclick="navigateTo('about')">About</li>
-            <li data-text="Projects" onclick="navigateTo('projects')">Projects</li>
-            <li data-text="Contact" onclick="navigateTo('contact')">Contact</li>
-        </ul>
+<h1 onclick="navigateToHome()">ÆLĪĀŠ</h1>
+<div id="menu-toggle">[ Menu ]</div>
+<div class="terminal" id="terminal">
+    <div class="title-bar">
+        <span>Navigation</span>
+        <span id="close-terminal">[ X ]</span>
     </div>
-    
-    <!-- Content Sections -->
-    <div id="about" class="page">
-        <h2 class="section-title">About</h2>
-        <div class="section-content">
-            <p>Welcome to AELIAS DOT CO!</p>
-            <p>Hey I am Elias aka ÆLĪĀŠ and I built this website, with a little help of chatgpt.</p>
-            <p>I am a part of the e/acc community and am interested in programming, robotics, space coloniazation, aswell as warp drives ;)</p>
-        </div>
+    <ul>
+        <li data-text="About" onclick="navigateTo('about')">About</li>
+        <li data-text="Projects" onclick="navigateTo('projects')">Projects</li>
+        <li data-text="Contact" onclick="navigateTo('contact')">Contact</li>
+    </ul>
+</div>
+
+<div id="about" class="page">
+    <h2 class="section-title">About</h2>
+    <div class="section-content">
+        <p>Welcome to AELIAS DOT CO!</p>
+        <p>Hey I am Elias aka ÆLĪĀŠ and I built this website, with a little help of chatgpt.</p>
+        <p>I am a part of the e/acc community and am interested in programming, robotics, space coloniazation, aswell as warp drives ;)</p>
     </div>
+</div>
 
-    <div id="projects" class="page">
-        <h2 class="section-title">Projects</h2>
-        <div class="section-content">
-            <p>This is the Projects page.</p>
-            <p>here I will post regular updates on my projects, more detailed than on my X page</p>
-            <p>some of the projects I currently am planning/working on:</p>
-            <p>-building a lab in the attic of a good friend of mine</p>
-            <p>-building the TARS robot from Interstellar irl</p>
-            <p>-building+improving this website aelias dot co</p>
-            <p>-starting an e/acc news podcast, one episode every friday, summarising everything e/acc that happened in the week, first episode airs on december 27th on X</p>
-        </div>
+<div id="projects" class="page">
+    <h2 class="section-title">Projects</h2>
+    <div class="section-content">
+        <p>This is the Projects page.</p>
+        <p>here I will post regular updates on my projects, more detailed than on my X page</p>
+        <p>some of the projects I currently am planning/working on:</p>
+        <p>-building a lab in the attic of a good friend of mine</p>
+        <p>-building the TARS robot from Interstellar irl</p>
+        <p>-building+improving this website aelias dot co</p>
+        <p>-starting an e/acc news podcast, one episode every friday, summarising everything e/acc that happened in the week, first episode airs on december 27th on X</p>
     </div>
+</div>
 
-    <div id="contact" class="page">
-        <h2 class="section-title">Contact</h2>
-        <div class="section-content">
-            <p>Follow me on X</p>
-        </div>
+<div id="contact" class="page">
+    <h2 class="section-title">Contact</h2>
+    <div class="section-content">
+        <p>Follow me on X @EliasofIX</p>
     </div>
+</div>
 
-    <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const terminal = document.getElementById('terminal');
-        const closeTerminal = document.getElementById('close-terminal');
-        const sections = {
-            about: document.getElementById('about'),
-            projects: document.getElementById('projects'),
-            contact: document.getElementById('contact')
-        };
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const terminal = document.getElementById('terminal');
+    const closeTerminal = document.getElementById('close-terminal');
+    const sections = {
+        about: document.getElementById('about'),
+        projects: document.getElementById('projects'),
+        contact: document.getElementById('contact')
+    };
 
-        // Open/Close Terminal
-        menuToggle.addEventListener('click', () => {
-            terminal.style.display = terminal.style.display === 'block' ? 'none' : 'block';
+    menuToggle.addEventListener('click', () => {
+        terminal.style.display = terminal.style.display === 'block' ? 'none' : 'block';
+    });
+
+    closeTerminal.addEventListener('click', () => {
+        terminal.style.display = 'none';
+    });
+
+    function hideAllSections() {
+        Object.values(sections).forEach(section => {
+            section.classList.remove('active');
         });
+    }
 
-        closeTerminal.addEventListener('click', () => {
-            terminal.style.display = 'none';
-        });
+    function navigateTo(section) {
+        hideAllSections();
+        sections[section].classList.add('active');
+        terminal.style.display = 'none';
+    }
 
-        // Hide all sections
-        function hideAllSections() {
-            Object.values(sections).forEach(section => {
-                section.classList.remove('active');
-            });
-        }
+    function navigateToHome() {
+        hideAllSections();
+    }
 
-        // Navigate to a section
-        function navigateTo(section) {
-            hideAllSections();
-            sections[section].classList.add('active');
-            terminal.style.display = 'none';
-        }
-
-        // Navigate back to the home page
-        function navigateToHome() {
-            hideAllSections(); // Hide all sections
-            // Optionally, you can add home content here if necessary
-        }
-
-        // Initially show the home content or any starting page section
-        navigateToHome();
-    </script>
+    navigateToHome();
+</script>
 </body>
 </html>
