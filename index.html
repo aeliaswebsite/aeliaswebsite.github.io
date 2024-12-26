@@ -88,7 +88,6 @@
             z-index: 2;
         }
 
-        /* Modal overlay for terminal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -191,6 +190,68 @@
             display: inline-block;
             margin-top: var(--space-medium);
             font-size: var(--font-size-button);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: calc(var(--font-size-title) * 0.6);
+                letter-spacing: calc(var(--spacing-title) * 0.6);
+            }
+
+            .interactive-element {
+                font-size: calc(var(--font-size-button) * 0.8);
+                padding: calc(var(--space-small) * 0.8) calc(var(--space-medium) * 0.8);
+            }
+
+            .terminal {
+                width: 90%;
+                left: 5%;
+                top: 5%;
+            }
+
+            .section-title {
+                font-size: calc(var(--font-size-section) * 0.8);
+            }
+
+            .section-content {
+                font-size: calc(var(--font-size-body) * 0.9);
+            }
+
+            #menu-toggle {
+                top: var(--space-small);
+                right: var(--space-small);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: calc(var(--font-size-title) * 0.4);
+                letter-spacing: calc(var(--spacing-title) * 0.4);
+            }
+
+            .interactive-element {
+                font-size: calc(var(--font-size-button) * 0.7);
+                padding: calc(var(--space-small) * 0.6) calc(var(--space-medium) * 0.6);
+            }
+
+            .terminal {
+                width: 95%;
+                left: 2.5%;
+                top: 2.5%;
+            }
+
+            .section-title {
+                font-size: calc(var(--font-size-section) * 0.7);
+            }
+
+            .section-content {
+                font-size: calc(var(--font-size-body) * 0.8);
+            }
+
+            #menu-toggle {
+                font-size: calc(var(--font-size-button) * 0.7);
+            }
         }
     </style>
 </head>
