@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AELIAS</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #f0f0f0;
+            --accent: #888;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #main {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            font-size: 4rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .page-header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: none;
+            z-index: 100;
+        }
+
+        #menuBtn, .menu-style-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--text);
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 100;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            place-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 600px;
+            max-width: 90%;
+            border: 1px solid var(--accent);
+        }
+
+        .menu-item {
+            padding: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .menu-item:hover {
+            background: #222;
+        }
+
+        .page {
+            display: none;
+            padding: 100px 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-sidebar {
+            border-right: 1px solid var(--accent);
+            padding-right: 2rem;
+        }
+
+        .terminal-page {
+            font-family: 'Courier New', monospace;
+            text-align: right;
+            white-space: pre-wrap;
+        }
+
+        .project-list {
+            margin: 2rem 0;
+            padding-left: 2rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .update-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .pdf-viewer-container {
+            width: 100%;
+            height: 80vh;
+            display: grid;
+            place-items: center;
+        }
+
+        iframe {
+            width: 80%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .all-updates-btn {
+            position: absolute;
+            left: 2rem;
+            bottom: 2rem;
+        }
+
+        .error-message {
+            color: #ff4444;
+            padding: 1rem;
+            border: 1px solid #ff4444;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" onclick="goHome()">AELIAS</div>
+    <div class="page-header" onclick="goHome()">AELIAS</div>
+    
+    <button id="menuBtn">[ menu ]</button>
+
+    <div class="modal" id="menuModal">
+        <div class="modal-content">
+            <div class="menu-item" onclick="showPage('about')">about me</div>
+            <div class="menu-item" onclick="showPage('blog')">kwisatz report</div>
+            <div class="menu-item" onclick="showPage('projects')">projects</div>
+            <div class="menu-item" onclick="showPage('updates')">website updates</div>
+        </div>
+    </div>
+
+    <div id="about" class="page">
+        <h1>Hey I am AELIAS</h1>
+        <div class="project-list">
+            <p>Follow me on <a href="https://x.com/aelias" target="_blank">X</a></p>
+            <p>Here's my <a href="https://github.com/aelias" target="_blank">GitHub</a></p>
+        </div>
+    </div>
+
+    <div id="blog" class="page">
+        <h1>Kwisatz Report</h1>
+        <div class="blog-layout">
+            <div class="blog-sidebar">
+                <input type="text" placeholder="Search archives..." style="width: 100%; margin-bottom: 1rem;">
+                <div id="blogList"></div>
+            </div>
+            <div class="pdf-viewer-container">
+                <iframe id="pdfViewer"></iframe>
+                <div id="pdfError" class="error-message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="page">
+        <h1>Active Development</h1>
+        <div class="project-list">
+            <div class="update-item">
+                <h3>Personal Website</h3>
+                <p>Current version: 2.1.0</p>
+            </div>
+            <div class="update-item">
+                <h3>Memosyn</h3>
+                <p>Browser-based second brain application</p>
+                <p>Status: Alpha development</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="updates" class="page">
+        <h1>Website Updates</h1>
+        <button class="menu-style-btn all-updates-btn" onclick="showPage('all-updates')">[ all updates ]</button>
+    </div>
+
+    <div id="all-updates" class="page terminal-page">
+        <h1 style="text-align: right">Update Log</h1>
+        <div style="border-top: 1px solid var(--accent); padding-top: 1rem;" id="updateLog"></div>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const modal = document.getElementById('menuModal');
+        const main = document.getElementById('main');
+        const pageHeader = document.querySelector('.page-header');
+        const pdfViewer = document.getElementById('pdfViewer');
+        const blogList = document.getElementById('blogList');
+        const pdfError = document.getElementById('pdfError');
+
+        // Load PDF manifest
+        async function loadPDFs() {
+            try {
+                const response = await fetch('pdfs.json');
+                if (!response.ok) throw new Error('Failed to load PDF list');
+                const pdfManifest = await response.json();
+                
+                blogList.innerHTML = '';
+                pdfManifest.forEach(pdf => {
+                    const item = document.createElement('div');
+                    item.className = 'update-item';
+                    item.textContent = pdf.title;
+                    item.onclick = () => loadPDF(pdf.file);
+                    blogList.appendChild(item);
+                });
+
+                if (pdfManifest.length > 0) {
+                    loadPDF(pdfManifest[0].file);
+                }
+            } catch (error) {
+                pdfError.textContent = 'Error loading PDF list: ' + error.message;
+                pdfError.style.display = 'block';
+            }
+        }
+
+        function loadPDF(filename) {
+            pdfViewer.src = `pdfs/${filename}`;
+            pdfViewer.onerror = () => {
+                pdfError.textContent = `Failed to load PDF: ${filename}`;
+                pdfError.style.display = 'block';
+            };
+            pdfViewer.onload = () => {
+                pdfError.style.display = 'none';
+            };
+        }
+
+        function goHome() {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            main.style.display = 'grid';
+            pageHeader.style.display = 'none';
+        }
+
+        function showPage(pageId) {
+            main.style.display = 'none';
+            pageHeader.style.display = 'block';
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+            modal.classList.remove('visible');
+            setTimeout(() => modal.style.display = 'none', 200);
+        }
+
+        // Initialize
+        menuBtn.addEventListener('click', () => {
+            modal.style.display = 'grid';
+            setTimeout(() => modal.classList.add('visible'), 10);
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('visible');
+                setTimeout(() => modal.style.display = 'none', 200);
+            }
+        });
+
+        // Load PDFs when blog page is accessed
+        document.getElementById('blog').addEventListener('click', loadPDFs);
+        window.addEventListener('load', loadPDFs);
+    </script>
+</body>
+</html>
